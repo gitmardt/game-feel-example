@@ -66,7 +66,7 @@ VisualEffect:
       - m_Value: {x: 0.05, y: 0.2}
         m_Name: SizeRandom
         m_Overridden: 1
-      - m_Value: {x: 0.5, y: 1.25}
+      - m_Value: {x: 0.5, y: 1}
         m_Name: LifetimeRandom
         m_Overridden: 1
       - m_Value: {x: 4, y: 12}
@@ -159,7 +159,10 @@ VisualEffect:
         m_Name: Texture
         m_Overridden: 1
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: Collision
+        m_Overridden: 1
 --- !u!73398921 &9105031552925953676
 VFXRenderer:
   serializedVersion: 1

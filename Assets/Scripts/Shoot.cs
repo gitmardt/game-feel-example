@@ -1,5 +1,6 @@
 using SmoothShakePro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Shoot : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Shoot : MonoBehaviour
     public bool cameraShake = true;
     public bool turretShake = true;
     public bool impactVFX = true;
+    public bool muzzleVFX = true;
     public bool wallDestruction = false;
 
     [Header("Refs")]
@@ -16,6 +18,7 @@ public class Shoot : MonoBehaviour
     public Transform barrel;
     public GameObject rocketPrefab;
     public BoxCollider wallCollider;
+    public VisualEffect[] muzzleEffects;
 
     public Vector3 orientationOffsetEuler = Vector3.zero;
 
@@ -28,6 +31,14 @@ public class Shoot : MonoBehaviour
 
         if(cameraShake) shakeManager.StartShake("Camera", rocketShoot);
         if(turretShake) shakeManager.StartShake("Turret");
+
+        if (muzzleVFX)
+        {
+            foreach (var effect in muzzleEffects)
+            {
+                effect.Play();
+            }
+        }
 
         if (rocket.TryGetComponent<Rocket>(out var r))
         {
