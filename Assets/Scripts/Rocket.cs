@@ -1,3 +1,4 @@
+using SmoothShakePro;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
@@ -5,11 +6,15 @@ public class Rocket : MonoBehaviour
     public float speed = 20f;
     public float lifetime = 5f;
 
+    public SmoothShakeManager shakeManager;
+    public SmoothShakePreset rocketImpact;
+
     private Rigidbody rb;
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        Destroy(gameObject);  
+        if(shakeManager) shakeManager.StartShake("Camera", rocketImpact);
     }
 
     void OnEnable()
