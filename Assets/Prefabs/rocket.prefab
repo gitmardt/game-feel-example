@@ -131,5 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49956b8b443abd4391613426ec100bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactPrefab: {fileID: 9158884837437276812, guid: 6665ed4b8249a62418df39568848ae0e, type: 3}
   speed: 50
   lifetime: 2
+  shakeManager: {fileID: 0}
+  rocketImpact: {fileID: 0}
