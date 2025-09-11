@@ -293,9 +293,11 @@ MonoBehaviour:
   lifetime: 2
   slowMotionDuration: 0.25
   slowMotionScale: 0.05
+  impactFrameDuration: 0.2
   shakeManager: {fileID: 0}
   rocketImpact: {fileID: 0}
   wallCollider: {fileID: 0}
+  impactFrameVolume: {fileID: 0}
   impactSparks: 1
   impactStar: 1
   impactFire: 1
@@ -305,3 +307,4 @@ MonoBehaviour:
   trailVFX: 0
   leaveWallOn: 0
   slowMotion: 0
+  impactFrame: 0

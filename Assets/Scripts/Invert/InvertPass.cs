@@ -11,9 +11,9 @@ public class InvertPass : BasePass
 
         if (settings == null) return;
 
-        m_BlitMaterial.SetTexture("_MaskTexture", settings.maskTexture.value);
-        m_BlitMaterial.SetFloat("_MaskThreshold", settings.maskThreshold.value);
         m_BlitMaterial.SetFloat("_Invert", settings.invert.value);
         m_BlitMaterial.SetFloat("_Vignette", settings.vignette.value);
+        m_BlitMaterial.SetColor("_Tint", settings.tint.value);
+        m_BlitMaterial.SetFloat("_Contrast", settings.contrast.value);
     }
 }

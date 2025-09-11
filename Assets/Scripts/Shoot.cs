@@ -1,5 +1,6 @@
 using SmoothShakePro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.VFX;
 
 public class Shoot : MonoBehaviour
@@ -12,6 +13,7 @@ public class Shoot : MonoBehaviour
     public bool wallDestruction = false;
     public bool leaveWallOn = false;
     public bool slowMotion = false;
+    public bool impactFrame = false;
 
     [Header("Feel impact settings")]
     public bool impactSparks = true;
@@ -28,6 +30,7 @@ public class Shoot : MonoBehaviour
     public GameObject rocketPrefab;
     public BoxCollider wallCollider;
     public VisualEffect[] muzzleEffects;
+    public Volume impactFrameVolume;
 
     public Vector3 orientationOffsetEuler = Vector3.zero;
 
@@ -62,6 +65,8 @@ public class Shoot : MonoBehaviour
             r.wallCollider = wallCollider;
             r.leaveWallOn = leaveWallOn;
             r.slowMotion = slowMotion;
+            r.impactFrameVolume = impactFrameVolume; 
+            r.impactFrame = impactFrame;
             if (!trailVFX) r.trail.SetActive(false);
         }
     }

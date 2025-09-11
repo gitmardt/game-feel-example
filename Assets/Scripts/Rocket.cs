@@ -1,6 +1,7 @@
 using SmoothShakePro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Rocket : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class Rocket : MonoBehaviour
     public float lifetime = 5f;
     public float slowMotionDuration = 0.5f;
     public float slowMotionScale = 0.2f;
+    public float impactFrameDuration = 0.5f;
 
     [HideInInspector] public SmoothShakeManager shakeManager;
     [HideInInspector] public SmoothShakePreset rocketImpact;
     [HideInInspector] public BoxCollider wallCollider;
+    [HideInInspector] public Volume impactFrameVolume;
     [HideInInspector] public bool impactSparks = true;
     [HideInInspector] public bool impactStar = true;
     [HideInInspector] public bool impactFire = true;
@@ -24,6 +27,7 @@ public class Rocket : MonoBehaviour
     [HideInInspector] public bool trailVFX = false;
     [HideInInspector] public bool leaveWallOn = false;
     [HideInInspector] public bool slowMotion = false;
+    [HideInInspector] public bool impactFrame = false;
 
     private Rigidbody rb;
 
@@ -38,6 +42,14 @@ public class Rocket : MonoBehaviour
             impact.smoke = impactSmoke;
             impact.groundCircle = impactGroundCircle;
             impact.Initialize(wallCollider, impactSparks, leaveWallOn);
+        }
+
+        if (impactFrame && impactFrameVolume)
+        {
+            var helper = impactFrameVolume.gameObject.GetComponent<ImpactFramePulseHelper>();
+            if (!helper) helper = impactFrameVolume.gameObject.AddComponent<ImpactFramePulseHelper>();
+
+            helper.PulseNow(impactFrameVolume, impactFrameDuration);
         }
 
         if (wallDestruction)
@@ -70,5 +82,33 @@ public class Rocket : MonoBehaviour
         rb.isKinematic = false;        
         rb.linearVelocity = transform.forward * speed;
         Destroy(gameObject, lifetime);
+    }
+
+    private class ImpactFramePulseHelper : MonoBehaviour
+    {
+        private Coroutine running;
+
+        public void PulseNow(Volume vol, float duration)
+        {
+            if (running != null) StopCoroutine(running);
+            running = StartCoroutine(Pulse(vol, duration));
+        }
+
+        private System.Collections.IEnumerator Pulse(Volume vol, float duration)
+        {
+            if (!vol) yield break;
+
+            vol.weight = 1f;
+            float t = 0f;
+
+            while (t < duration)
+            {
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            if (vol) vol.weight = 0f;
+            running = null;
+        }
     }
 }

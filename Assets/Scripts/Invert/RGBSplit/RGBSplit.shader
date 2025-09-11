@@ -1,8 +1,10 @@
-Shader "PostProcessing/Invert"
+Shader "SmoothPostProcessing/RGBSplit"
 {
     Properties
     {
         _BlitTexture ("Texture", 2D) = "white" {}
+        _Offset ("Offset", Vector) = (0, 0, 0, 0)
+        _Color1 ("Color1", Color) = (1, 1, 1, 1)
     }
     SubShader
     {
@@ -15,6 +17,8 @@ Shader "PostProcessing/Invert"
 
             HLSLPROGRAM
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 
             #pragma vertex Vert
             #pragma fragment frag
@@ -46,13 +50,11 @@ Shader "PostProcessing/Invert"
 
             TEXTURE2D(_BlitTexture);
             SAMPLER(sampler_BlitTexture);
-            float4 _BlitTexture_TexelSize;
-           
-            float _Invert;
-            float _Vignette;
 
-            float4 _Tint;  
-            float  _Contrast;  
+            float2 _OffsetR;
+            float2 _OffsetG;
+            float2 _OffsetB;
+            float _Vignette;
 
             float fadeValue (float2 uv, float2 center, float vignette)
 			{
@@ -63,20 +65,13 @@ Shader "PostProcessing/Invert"
 
             half4 frag (Varyings input) : SV_Target
             {
-                float4 src = SAMPLE_TEXTURE2D(_BlitTexture, sampler_BlitTexture, input.texcoord);
-
                 float fade = fadeValue(input.texcoord, float2(0.5, 0.5), _Vignette);
 
-                float luma = dot(src.rgb, float3(0.2126, 0.7152, 0.0722));
-                float invLuma = 1.0 - luma;
+                float coLR = SAMPLE_TEXTURE2D(_BlitTexture, sampler_BlitTexture, input.texcoord + ((_OffsetR / 50) * fade)).r;
+                float coLG = SAMPLE_TEXTURE2D(_BlitTexture, sampler_BlitTexture, input.texcoord + ((_OffsetG / 50) * fade)).g;
+                float coLB = SAMPLE_TEXTURE2D(_BlitTexture, sampler_BlitTexture, input.texcoord + ((_OffsetB / 50) * fade)).b;
 
-                invLuma = saturate((invLuma - 0.5) * _Contrast + 0.5);
-
-                float3 mono = invLuma * _Tint.rgb;
-
-                float4 processed = float4(mono, src.a);
-
-                return lerp(src, processed, fade * _Invert);
+                return float4(coLR, coLG, coLB, 1);
             }
             ENDHLSL
         }

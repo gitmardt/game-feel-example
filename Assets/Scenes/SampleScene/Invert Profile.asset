@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6465934975277841756
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2065a399add4a24aa14123c31c75df1, type: 3}
+  m_Name: RGBSplitSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+  offsetR:
+    m_OverrideState: 1
+    m_Value: {x: 0.58, y: 0}
+  offsetG:
+    m_OverrideState: 1
+    m_Value: {x: -0.04, y: 0.71}
+  offsetB:
+    m_OverrideState: 1
+    m_Value: {x: -0.8, y: 0.12}
+  vignette:
+    m_OverrideState: 1
+    m_Value: 1.43
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,6 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 8377509425851303490}
+  - {fileID: -6465934975277841756}
 --- !u!114 &8377509425851303490
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -27,16 +56,15 @@ MonoBehaviour:
   m_Name: InvertSettings
   m_EditorClassIdentifier: 
   active: 1
-  maskTexture:
-    m_OverrideState: 1
-    m_Value: {fileID: 0}
-    dimension: 1
-  maskThreshold:
-    m_OverrideState: 1
-    m_Value: 0
   invert:
     m_OverrideState: 1
     m_Value: 1
   vignette:
     m_OverrideState: 1
     m_Value: 0
+  tint:
+    m_OverrideState: 1
+    m_Value: {r: 1.7411011, g: 0.8744219, b: 0.32029694, a: 1}
+  contrast:
+    m_OverrideState: 1
+    m_Value: 5
