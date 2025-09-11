@@ -5751,6 +5751,7 @@ MonoBehaviour:
   muzzleVFX: 1
   trailVFX: 1
   wallDestruction: 0
+  leaveWallOn: 0
   impactSparks: 1
   impactStar: 1
   impactFire: 1

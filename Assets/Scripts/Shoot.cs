@@ -10,6 +10,7 @@ public class Shoot : MonoBehaviour
     public bool muzzleVFX = true;
     public bool trailVFX = true;
     public bool wallDestruction = false;
+    public bool leaveWallOn = false;
 
     [Header("Feel impact settings")]
     public bool impactSparks = true;
@@ -58,7 +59,8 @@ public class Shoot : MonoBehaviour
             r.rocketImpact = rocketImpact;
             r.wallDestruction = wallDestruction;
             r.wallCollider = wallCollider;
-            if(!trailVFX) r.trail.SetActive(false);
+            r.leaveWallOn = leaveWallOn;
+            if (!trailVFX) r.trail.SetActive(false);
         }
     }
 }

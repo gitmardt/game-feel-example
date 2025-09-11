@@ -20,6 +20,7 @@ public class Rocket : MonoBehaviour
     [HideInInspector] public bool impactGroundCircle = true;
     [HideInInspector] public bool wallDestruction = false;
     [HideInInspector] public bool trailVFX = false;
+    [HideInInspector] public bool leaveWallOn = false;
 
     private Rigidbody rb;
 
@@ -33,7 +34,7 @@ public class Rocket : MonoBehaviour
             impact.fire = impactFire;
             impact.smoke = impactSmoke;
             impact.groundCircle = impactGroundCircle;
-            impact.Initialize(wallCollider, impactSparks, wallDestruction);
+            impact.Initialize(wallCollider, impactSparks, leaveWallOn);
         }
 
         if (wallDestruction)
