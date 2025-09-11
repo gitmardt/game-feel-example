@@ -11,6 +11,7 @@ public class Shoot : MonoBehaviour
     public bool trailVFX = true;
     public bool wallDestruction = false;
     public bool leaveWallOn = false;
+    public bool slowMotion = false;
 
     [Header("Feel impact settings")]
     public bool impactSparks = true;
@@ -60,6 +61,7 @@ public class Shoot : MonoBehaviour
             r.wallDestruction = wallDestruction;
             r.wallCollider = wallCollider;
             r.leaveWallOn = leaveWallOn;
+            r.slowMotion = slowMotion;
             if (!trailVFX) r.trail.SetActive(false);
         }
     }

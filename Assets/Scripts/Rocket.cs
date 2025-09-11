@@ -9,6 +9,8 @@ public class Rocket : MonoBehaviour
 
     public float speed = 20f;
     public float lifetime = 5f;
+    public float slowMotionDuration = 0.5f;
+    public float slowMotionScale = 0.2f;
 
     [HideInInspector] public SmoothShakeManager shakeManager;
     [HideInInspector] public SmoothShakePreset rocketImpact;
@@ -21,6 +23,7 @@ public class Rocket : MonoBehaviour
     [HideInInspector] public bool wallDestruction = false;
     [HideInInspector] public bool trailVFX = false;
     [HideInInspector] public bool leaveWallOn = false;
+    [HideInInspector] public bool slowMotion = false;
 
     private Rigidbody rb;
 
@@ -43,6 +46,11 @@ public class Rocket : MonoBehaviour
             {
                 destructible.Destroy(transform.position);
             }
+        }
+
+        if (slowMotion)
+        {
+            SlowMotion.SlowMoPulse(slowMotionScale, slowMotionDuration);
         }
 
         //Unparent trail and destroy after 2 seconds

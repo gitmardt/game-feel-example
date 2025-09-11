@@ -291,9 +291,17 @@ MonoBehaviour:
   trail: {fileID: 6744652214724750685}
   speed: 50
   lifetime: 2
+  slowMotionDuration: 0.25
+  slowMotionScale: 0.05
   shakeManager: {fileID: 0}
   rocketImpact: {fileID: 0}
   wallCollider: {fileID: 0}
-  impactVFX: 0
+  impactSparks: 1
+  impactStar: 1
+  impactFire: 1
+  impactSmoke: 1
+  impactGroundCircle: 1
   wallDestruction: 0
   trailVFX: 0
+  leaveWallOn: 0
+  slowMotion: 0
