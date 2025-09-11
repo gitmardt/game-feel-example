@@ -1,7 +1,7 @@
 # game-feel-example
 Game Feel &amp; VFX Example made for my Healthy Gamer Game Jam talk 
 
-https://members.healthygamer.gg/c/community-sessions/hg-gj-how-to-improve-game-feel
+Link to talk: https://members.healthygamer.gg/c/community-sessions/hg-gj-how-to-improve-game-feel
 
 To open this project properly you will need Smooth Shake Pro, a tool I made
 https://assetstore.unity.com/packages/tools/animation/smooth-shake-pro-271080
