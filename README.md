@@ -3,6 +3,8 @@ Game Feel &amp; VFX Example made for my Healthy Gamer Game Jam talk
 
 Link to talk: https://members.healthygamer.gg/c/community-sessions/hg-gj-how-to-improve-game-feel
 
+Link to substance designer file with all textures made for this project: http://mardt.dev/file/GameFeelExample.sbs
+
 To open this project properly you will need Smooth Shake Pro, a tool I made
 https://assetstore.unity.com/packages/tools/animation/smooth-shake-pro-271080
 (Simply install it into the Assets folder of the project)
