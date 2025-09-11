@@ -33,10 +33,6 @@ public class Impact : MonoBehaviour
         {
             wallCollider.gameObject.SetActive(false);
         }
-        else
-        {
-            //Proper wall destruction
-        }
 
         Destroy(gameObject, lifetime);
     }

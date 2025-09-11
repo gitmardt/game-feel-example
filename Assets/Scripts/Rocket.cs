@@ -1,4 +1,5 @@
 using SmoothShakePro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
@@ -33,6 +34,14 @@ public class Rocket : MonoBehaviour
             impact.smoke = impactSmoke;
             impact.groundCircle = impactGroundCircle;
             impact.Initialize(wallCollider, impactSparks, wallDestruction);
+        }
+
+        if (wallDestruction)
+        {
+            if (collision.gameObject.TryGetComponent<Destructible>(out var destructible))
+            {
+                destructible.Destroy(transform.position);
+            }
         }
 
         //Unparent trail and destroy after 2 seconds
