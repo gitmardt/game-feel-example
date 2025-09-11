@@ -7,9 +7,16 @@ public class Shoot : MonoBehaviour
     [Header("Feel Settings")]
     public bool cameraShake = true;
     public bool turretShake = true;
-    public bool impactVFX = true;
     public bool muzzleVFX = true;
+    public bool trailVFX = true;
     public bool wallDestruction = false;
+
+    [Header("Feel impact settings")]
+    public bool impactSparks = true;
+    public bool impactStar = true;
+    public bool impactFire = true;
+    public bool impactSmoke = true;
+    public bool impactGroundCircle = true;
 
     [Header("Refs")]
     public SmoothShakeManager shakeManager;
@@ -43,10 +50,15 @@ public class Shoot : MonoBehaviour
         if (rocket.TryGetComponent<Rocket>(out var r))
         {
             if(cameraShake) r.shakeManager = shakeManager;
+            r.impactStar = impactStar;
+            r.impactFire = impactFire;
+            r.impactSmoke = impactSmoke;
+            r.impactGroundCircle = impactGroundCircle;
+            r.impactSparks = impactSparks;
             r.rocketImpact = rocketImpact;
-            r.impactVFX = impactVFX;
             r.wallDestruction = wallDestruction;
             r.wallCollider = wallCollider;
+            if(!trailVFX) r.trail.SetActive(false);
         }
     }
 }
